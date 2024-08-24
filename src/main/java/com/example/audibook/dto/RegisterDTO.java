@@ -17,5 +17,5 @@ public class RegisterDTO {
     @Enumerated(EnumType.STRING)
     private Role role;
     private String password;
-
+    private String contact;
 }

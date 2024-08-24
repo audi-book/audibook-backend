@@ -10,5 +10,4 @@ import lombok.NoArgsConstructor;
 public class UpdateEventStatusDTO {
     private Long eventId;
     private String status;
-    private int userId;
 }
