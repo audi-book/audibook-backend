@@ -1,8 +1,5 @@
 package com.example.audibook.controller;
-import com.example.audibook.dto.CreateEventDTO;
-import com.example.audibook.dto.ResponseDTO;
-import com.example.audibook.dto.UpdateEventDTO;
-import com.example.audibook.dto.UpdateEventStatusDTO;
+import com.example.audibook.dto.*;
 import com.example.audibook.entity.Event;
 import com.example.audibook.exception.CustomException;
 import com.example.audibook.service.EventService;
@@ -23,28 +20,28 @@ public class EventController {
     private EventService eventService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<ResponseDTO<Event>> getEventById(@PathVariable Long id) {
+    public ResponseEntity<ResponseDTO<EventResponseDTO>> getEventById(@PathVariable Long id) {
         try {
-            Event event = eventService.getEventById(id);
-            ResponseDTO<Event> response = new ResponseDTO<>(true, event, "Event retrieved successfully");
+            EventResponseDTO event = eventService.getEventById(id);
+            ResponseDTO<EventResponseDTO> response = new ResponseDTO<>(true, event, "Event retrieved successfully");
             return ResponseEntity.ok(response);
         } catch (CustomException e) {
-            ResponseDTO<Event> response = new ResponseDTO<>(false, null, e.getMessage());
+            ResponseDTO<EventResponseDTO> response = new ResponseDTO<>(false, null, e.getMessage());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
         } catch (Exception e) {
-            ResponseDTO<Event> response = new ResponseDTO<>(false, null, e.getMessage());
+            ResponseDTO<EventResponseDTO> response = new ResponseDTO<>(false, null, e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }
 
     @GetMapping
-    public ResponseEntity<ResponseDTO<List<Event>>> getAllEvents() {
+    public ResponseEntity<ResponseDTO<List<EventResponseDTO>>> getAllEvents() {
         try {
-            List<Event> events = eventService.getAllEvents();
-            ResponseDTO<List<Event>> response = new ResponseDTO<>(true, events, "Events retrieved successfully");
+            List<EventResponseDTO> events = eventService.getAllEvents();
+            ResponseDTO<List<EventResponseDTO>> response = new ResponseDTO<>(true, events, "Events retrieved successfully");
             return ResponseEntity.ok(response);
         } catch (Exception e) {
-            ResponseDTO<List<Event>> response = new ResponseDTO<>(false, null, e.getMessage());
+            ResponseDTO<List<EventResponseDTO>> response = new ResponseDTO<>(false, null, e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }

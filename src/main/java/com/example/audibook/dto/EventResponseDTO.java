@@ -7,16 +7,14 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateEventDTO {
-
+public class EventResponseDTO {
+    private Long id;
     private String eventName;
-
     private String eventDate;
-
     private String startTime;
-
     private String endTime;
-
-
+    private String status;
     private int userId;
+    private String userName;
+    private String userEmail;
 }

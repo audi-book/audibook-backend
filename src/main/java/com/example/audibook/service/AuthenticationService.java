@@ -30,7 +30,7 @@ public class AuthenticationService {
                 request.getName(),
                 request.getEmail(),
                 passwordEncoder.encode(request.getPassword()),
-                "",
+                request.getContact(),
                 request.getRole()
         );
 

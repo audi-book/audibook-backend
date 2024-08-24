@@ -27,8 +27,6 @@ public class Event {
 
     private String endTime;
 
-    private String purpose;
-
     private String status;
 
     private int userId;
