@@ -90,12 +90,6 @@ public class EventService {
     public Event updateEventStatus(UpdateEventStatusDTO statusDTO) {
         Event event = eventRepository.findById(statusDTO.getEventId())
                 .orElseThrow(() -> new CustomException("Event not found"));
-        var user = userRepository.findById(statusDTO.getUserId())
-                .orElseThrow(() -> new CustomException("User not found"));
-
-        if (!"ADMIN".equals(user.getRole())) {
-            throw new CustomException("Only users with role ADMIN can update event status");
-        }
         event.setStatus(statusDTO.getStatus());
         eventRepository.save(event);
         return event;
